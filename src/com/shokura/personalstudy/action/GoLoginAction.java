@@ -43,7 +43,6 @@ public class GoLoginAction extends ActionSupport implements SessionAware {
 	public String execute() {
 
 		String result = ERROR;
-
 		result = SUCCESS;
 		return result;
 	}

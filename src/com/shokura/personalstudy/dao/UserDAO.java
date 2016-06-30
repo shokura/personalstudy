@@ -12,6 +12,7 @@ import com.shokura.personalstudy.util.DBConnector;
 
 /**
  * ユーザーテーブルに接続する為のクラス
+ *
  * @author Shogo Kurachi
  * @since 2016/06/28
  * @version 1.0
@@ -19,14 +20,19 @@ import com.shokura.personalstudy.util.DBConnector;
 public class UserDAO {
 
 	/**
-	 * <p>ユーザーログイン判定<br>
-	 * ログインIDとパスワードが存在し、かつ削除フラグがたっていないかを判定する</p>
+	 * <p>
+	 * ユーザーログイン判定<br>
+	 * ログインIDとパスワードが存在し、かつ削除フラグがたっていないかを判定する
+	 * </p>
+	 *
 	 * @author Shogo Kurachi
-	 * @param loginId ログインID
-	 * @param password パスワード
+	 * @param loginId
+	 *            ログインID
+	 * @param password
+	 *            パスワード
 	 * @return result ログインできればtrue できなければfalse
 	 */
-	public boolean selectLogin(String loginId,String password ){
+	public boolean select(String loginId, String password) {
 		boolean result = false;
 
 		Connection con = new DBConnector().getConnection();
@@ -34,20 +40,20 @@ public class UserDAO {
 		// SQL文 login_idとpasswordで検索
 		String sql = "select * form user where login_id=? and password=?";
 
-		try{
-			PreparedStatement ps= con.prepareStatement(sql);
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				result = true;
 			}
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			try{
+		} finally {
+			try {
 				con.close();
-			}catch(SQLException e){
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}

@@ -5,75 +5,64 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.shokura.personalstudy.dao.UserDAO;
-import com.shokura.personalstudy.dto.UserDTO;
+import com.shokura.personalstudy.dao.LoginDAO;
+import com.shokura.personalstudy.dto.LoginDTO;
 
-public class LoginAction extends ActionSupport implements SessionAware  {
+public class LoginAction extends ActionSupport implements SessionAware{
 
+	private static final long serialVersionUID = -8957391474053205643L;
+	private String user_name;
+    private String password;
+    private Map<String,Object> session;
 
-	/**
-	 * シリアル・バージョンID
-	 */
-	private static final long serialVersionUID = 420037853825991687L;
+    public String execute(){
+        String ret = ERROR;
 
-	/**
-	 * 入力されたユーザーID
-	 */
-	private String loginId;
+        LoginDAO dao = new LoginDAO();
+        LoginDTO dto = new LoginDTO();
 
-	/**
-	 * 入力されたパスワード
-	 */
-	private String password;
+        dto = dao.select(user_name,password);
 
-	/**
-	 * エラーメッセージ
-	 */
-	private String errorMessagge;
+        String dtoName = dto.getName();
+        String dtoPassword = dto.getPassword();
 
-	/**
-	 * セッション
-	 */
-	private Map<String, Object> session;
+        if(dtoName != null){
+	        if(user_name.equals(dtoName)){
+	            if(dtoPassword.equals(dto.getPassword())){
+	                ret = SUCCESS;
+	            }
+	        }
+        }
+        session.put("user_name",dto.getName());
 
-	/**
-	 * DAOにログイン情報を渡して結果を返す
-	 *
-	 * @author SHOGO KURACHI
-	 * @return ログインンに成功したらSUCCESS 失敗したらERROR
-	 */
-	public String execute() {
-		String result = ERROR;
-		UserDAO dao = new UserDAO();
-		UserDTO dto = new UserDTO();
+        return ret;
+    }
 
-		boolean res = dao.select(loginId, password);
-		if (res) {
-			session.put("loginId", dto.getLoginId());
-			result = SUCCESS;
-		}else{
-			errorMessagge = getText("ログインIDまたはパスワードが間違ってます");
-		}
-		return result;
-	}
+    public String newUser(){
+    	return SUCCESS;
+    }
 
-	/**
-	 * セッションを取得するメソッド
-	 * @author Shogo Kurachi
-	 * @since  2015/07/03
-	 * @return session
-	 */
-	public Map<String, Object> getSession() {
-		return session;
-	}
+    public String getName(){
+        return user_name;
+    }
 
-	/**
-	 * セッションを格納するメソッド
-	 * @author Shogo Kurachi
-	 * @since  2015/07/03
-	 * @param session セッション
-	 */
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
+    public void setName(String name){
+        this.user_name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public Map<String, Object> getSession(){
+        return session;
+    }
+
+    public void setSession(Map<String, Object> session){
+        this.session = session;
+    }
 }

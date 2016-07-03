@@ -1,10 +1,10 @@
 drop database if exists datalist;
-create database personalstudy;
+create database datalist;
 use datalist;
 
 create table user(
 	user_id int not null primary key auto_increment,
-	login_id varchar(32) not null,
+	user_name varchar(32) not null,
 	password varchar(255) not null,
 		oauth_id varchar(50),
 	oauth_name varchar(50)

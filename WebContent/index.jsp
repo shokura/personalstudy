@@ -25,15 +25,5 @@
 		</p>
 	</s:form>
 
-
-	<!-- ユーザー名とパスワードを入力 -->
-	<s:form action="LoginAction">
-		<!--< name＝java側に値を持っていく為の変数 value=テキストフィールド内 label=国際化時の値 />-->
-		<s:textfield name="name"/>
-		<s:textfield name="password" />
-		<!-- align=配置指定 左寄せ value=国際化時の値 -->
-		<s:submit align="left"/>
-	</s:form>
-
 </body>
 </html>

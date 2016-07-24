@@ -11,7 +11,13 @@
 <script src="js/script.js"></script>
 </head>
 <body>
-	<a href="#">Hover</a>
-	<p></p>
+<h1>Alertbox</h1>
+<button id="click">Click Me!</button>
+<div id="bg">
+  <div id="alertBox">
+    <p>Good job!</p>
+    <button id="ok">OK</button>
+  </div>
+</div>
 </body>
 </html>

@@ -4,36 +4,56 @@ package com.shokura.personalstudy.dto;
  * データーベースのデータを一時的に保持するクラス
  */
 public class LoginDTO{
-	// ID
-    private int id;
 
-    // ユーザー名
-    private String user_name;
+	/**
+	 * ログインID
+	 */
+    private int loginId;
 
-    // パスワード
+    /**
+     *  パスワード
+     */
     private String password;
 
-    public int getId(){
-        return id;
-    }
+	/**
+	 * 取得メソッド
+	 * ログインIDを取得する
+	 * @author Shogo Kurachi
+	 * @return loginId 取得するログインID
+	 */
+	public int getLoginId() {
+		return loginId;
+	}
 
-    public void setId(int id){
-        this.id = id;
-    }
+	/**
+	 * 格納メソッド
+	 * ログインIDを格納する
+	 * @author Shogo Kurachi
+	 * @param loginId セットするログインID
+	 */
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
+	}
 
-    public String getName(){
-        return user_name;
-    }
+	/**
+	 * 取得メソッド
+	 * パスワードを取得する
+	 * @author Shogo Kurachi
+	 * @return  password 取得するパスワード
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    public void setName(String name){
-        this.user_name = name;
-    }
+	/**
+	 * 格納メソッド
+	 * パスワードを格納する
+	 * @author Shogo Kurachi
+	 * @param  password セットするパスワード
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getPassword(){
-        return password;
-    }
 
-    public void setPassword(String password){
-        this.password = password;
-    }
 }

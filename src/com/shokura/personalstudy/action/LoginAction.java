@@ -2,38 +2,56 @@ package com.shokura.personalstudy.action;
 
 import java.util.Map;
 
+/**
+ * AdminLoginAction
+ * 管理者ログイン認証クラス
+ * @author Shogo Kurachi
+ * @since 2016/07/22
+ * @version 1.0
+ */
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.shokura.personalstudy.dao.LoginDAO;
 import com.shokura.personalstudy.dto.LoginDTO;
 public class LoginAction extends ActionSupport implements SessionAware{
+	/**
+	 * シリアルバージョンID
+	 */
 	private static final long serialVersionUID = -8957391474053205643L;
-	private String user_name;
+
+	/**
+	 * 入力されたユーザー名
+	 */
+	private String loginId;
+
+	/**
+	 * 入力されたパスワード
+	 */
     private String password;
+
+	/**
+	 * セッションを格納
+	 */
     private Map<String,Object> session;
 
+	/**
+	 * 実行メソッド
+	 * DAOに入力されたアカウント情報を渡してresultを返す
+	 * @author Shogo Kurachi
+	 * @return result 認証に成功したらSUCCESS、失敗したらERROR
+	 */
     public String execute(){
-        String ret = ERROR;
+		String result = ERROR;
+		LoginDAO dao = new LoginDAO();
+		LoginDTO dto = dao.select(loginId, password);
+		if(dto != null){
+			session.put("LoginId", dto.getLoginId());
+			session.put("password", dto.getPassword());
+			result = SUCCESS;
+		}
 
-        LoginDAO dao = new LoginDAO();
-        LoginDTO dto = new LoginDTO();
-
-        dto = dao.select(user_name,password);
-
-        String dtoName = dto.getName();
-        String dtoPassword = dto.getPassword();
-
-        if(dtoName != null){
-	        if(user_name.equals(dtoName)){
-	            if(dtoPassword.equals(dto.getPassword())){
-	                ret = SUCCESS;
-	            }
-	        }
-        }
-        session.put("user_name",dto.getName());
-
-        return ret;
+		return result;
     }
 
     public String newUser(){

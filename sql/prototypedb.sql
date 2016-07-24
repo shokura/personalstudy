@@ -1,18 +1,18 @@
-drop database if exists datalist;
-create database datalist;
-use datalist;
+drop database if exists personalstudy;
+create database personalstudy;
+use personalstudy;
 
+/*
+ * ユーザー情報
+ * ログインID login_id
+ * ログインパスワード password
+ */
 create table user(
-	user_id int not null primary key auto_increment,
+	login_id varchar(10) not null primary key,
 	user_name varchar(32) not null,
-	password varchar(255) not null,
-		oauth_id varchar(50),
-	oauth_name varchar(50)
+	password varchar(255) not null
 	);
-
-
-
-	insert into user(user_id,user_name,password)values
-	(1,"taro",123),
-	(2,"hana",456),
-	(3,"take",789);
+insert into user(login_id,user_name,password)values
+	("user01","ユーザー1",111),
+	("user02","ユーザー2",222),
+	("user03","ユーザー3",333);

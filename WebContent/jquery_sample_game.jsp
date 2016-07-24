@@ -24,8 +24,6 @@
       <button>START</button>
     </div>
   </div>
-  test1
 </div>
-test2
 </body>
 </html>

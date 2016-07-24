@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import com.shokura.personalstudy.dao.LoginDAO;
 import com.shokura.personalstudy.dto.LoginDTO;
-
+//test3
 public class LoginAction extends ActionSupport implements SessionAware{
 
 	private static final long serialVersionUID = -8957391474053205643L;

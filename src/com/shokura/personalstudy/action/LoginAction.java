@@ -9,7 +9,7 @@ import com.shokura.personalstudy.dao.LoginDAO;
 import com.shokura.personalstudy.dto.LoginDTO;
 //test3
 public class LoginAction extends ActionSupport implements SessionAware{
-
+//test
 	private static final long serialVersionUID = -8957391474053205643L;
 	private String user_name;
     private String password;

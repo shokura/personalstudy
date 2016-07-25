@@ -22,13 +22,15 @@
           <li><a href="login.jsp">ログイン</a></li>
          <li><a href="information.jsp">会社概要</a></li>
           <li><a href="#">ログイン管理</a></li>
+          <li><a href="#">お問い合わせ</a></li>
         </ul>
       </li>
-      <li><a href="#">Menu2</a>
+      <li><a href="#">メモ書き</a>
         <ul>
-          <li><a href="#">Menu2a</a></li>
-          <li><a href="#">Menu2b</a></li>
-          <li><a href="#">Menu2c</a></li>
+          <li><a href="#">Java</a></li>
+          <li><a href="#">jQuery</a></li>
+          <li><a href="#">JSP</a></li>
+          <li><a href="#">MySQL</a></li>
         </ul>
       </li>
       <li><a href="#">Menu3</a>

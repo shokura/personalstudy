@@ -1,5 +1,6 @@
 package com.shokura.personalstudy.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ import com.shokura.personalstudy.dto.LoginDTO;
 /**
  * LoginDAO
  * ユーザー情報をDBから取得するクラス
- * @author HIDEKI KUDO
+ * @author Shogo Kurachi
  * @since 2016/06/22
  * @version 1.0
  */
@@ -25,29 +26,32 @@ public class LoginDAO {
 	 * @return dto データが存在すればnull以外、存在しなければnull
 	 */
 	public LoginDTO select(String loginId, String password) {
-		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "personalstudy", "root",
-				"mysql");
-		LoginDTO dto = new LoginDTO();
+
+		LoginDTO dto = null;
+
+        Connection conn = new DBConnector("com.mysql.jdbc.Driver","jdbc:mysql://localhost/","personalstudy","root","mysql").getConnection();
+
 		String sql = "select * from user where user_name=? and password=?";
 
 		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, name);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
 			ps.setString(2, password);
-			System.out.println(name);
-			System.out.println(password);
-
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery(); // 取得した行などの情報を格納
 
 			if (rs.next()) {
-				dto.setName(rs.getString("user_name"));
+				dto = new LoginDTO();
+				// 行からデータを取得
+				// dtoに格納（指定のカラムの値を取得）
+				dto.setLoginId(rs.getString("login_id"));
 				dto.setPassword(rs.getString("password"));
 			}
 		} catch (SQLException e) {
-			System.out.println("SQLExceptionが発生しました");
+			e.printStackTrace();
 		} finally {
 			try {
-				con.close();
+				// リソースを開放
+				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

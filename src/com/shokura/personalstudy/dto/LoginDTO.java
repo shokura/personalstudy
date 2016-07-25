@@ -8,7 +8,7 @@ public class LoginDTO{
 	/**
 	 * ログインID
 	 */
-    private int loginId;
+    private String loginId;
 
     /**
      *  パスワード
@@ -21,7 +21,7 @@ public class LoginDTO{
 	 * @author Shogo Kurachi
 	 * @return loginId 取得するログインID
 	 */
-	public int getLoginId() {
+	public String getLoginId() {
 		return loginId;
 	}
 
@@ -31,7 +31,7 @@ public class LoginDTO{
 	 * @author Shogo Kurachi
 	 * @param loginId セットするログインID
 	 */
-	public void setLoginId(int loginId) {
+	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
 

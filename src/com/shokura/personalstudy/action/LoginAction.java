@@ -50,34 +50,66 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			session.put("password", dto.getPassword());
 			result = SUCCESS;
 		}
-
 		return result;
     }
 
-    public String newUser(){
-    	return SUCCESS;
-    }
 
-    public String getName(){
-        return user_name;
-    }
+	/**
+	 * 取得メソッド
+	 * ログインIDを取得
+	 * @author Shogo Kurachi
+	 * @return loginId 取得するログインID
+	 */
+    public String getLoginId() {
+		return loginId;
+	}
 
-    public void setName(String name){
-        this.user_name = name;
-    }
+	/**
+	 * 格納メソッド
+	 * ログインIDを格納
+	 * @author Shogo Kurachi
+	 * @param loginId 格納するログインID
+	 */
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 
-    public String getPassword() {
+	/**
+	 * 取得メソッド
+	 * パスワードを取得
+	 * @author Shogo Kurachi
+	 * @return password 取得するパスワード
+	 */
+	public String getPassword() {
         return password;
     }
 
+	/**
+	 * 格納メソッド
+	 * パスワードを格納
+	 * @author Shogo Kurachi
+	 * @param password 格納するパスワード
+	 */
     public void setPassword(String password){
         this.password = password;
     }
 
+	/**
+	 * 取得メソッド
+	 * セッションを取得
+	 * @author Shogo Kurach
+	 * @return session 取得するセッション
+	 */
     public Map<String, Object> getSession(){
         return session;
     }
 
+	/**
+	 * 格納メソッド
+	 * セッションを格納
+	 * @author Shogo Kurach
+	 * @param session 格納するセッション
+	 */
     public void setSession(Map<String, Object> session){
         this.session = session;
     }
